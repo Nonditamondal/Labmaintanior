@@ -1,0 +1,79 @@
+﻿@model IEnumerable<LabMaintanance6.Models.AllUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/stuff_layout.cshtml";
+}
+
+<h2>User Profile</h2>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    Username
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Email
+                </th>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+
+            </tr>
+            <tr>
+                <th>
+                    Active Status
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Email Verified
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email_verified)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Role
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.role_name)
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    @Html.ActionLink("Update Password", "Edit", new { id = item.user_id }, new { @class = "btn btn-primary btn-sm" }) |
+
+                    @Html.ActionLink("Deactive Your Account", "Delete", new { id = item.user_id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+
+
+
+
+            
+             
+            
+             
+               
+               
+           
+        }
+
+    </table>
+</div>

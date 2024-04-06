@@ -1,0 +1,129 @@
+﻿
+@model LabMaintanance6.Models.Complain
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        // Function to get the current date and time in yyyy-MM-dd HH:mm format
+        function getCurrentDateTime() {
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = String(today.getMonth() + 1).padStart(2, '0');
+            var day = String(today.getDate()).padStart(2, '0');
+            var hours = String(today.getHours()).padStart(2, '0');
+            var minutes = String(today.getMinutes()).padStart(2, '0');
+            var dateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes;
+            return dateTime;
+        }
+
+        // Set the current date and time in the action_date field
+        $(document).ready(function () {
+            var currentDateTime = getCurrentDateTime();
+            $('#action_date').val(currentDateTime);
+        });
+    </script>
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Complaint</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyqDz5SvLmbehY4p6o7aS7iC5f1l/2kCS" crossorigin="anonymous">
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-10">
+
+
+                @using (Html.BeginForm("Create", "Complains", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr><h2 class="text-center mb-4"> Please Submit Your Complaint Here</h2></tr>
+                            <tr>
+                                <th>Field</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Name_of_the_Item</th>
+                                <td>
+                                    @Html.EditorFor(model => model.Name_Of_the_Item, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.Name_Of_the_Item, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>
+                                    @Html.TextAreaFor(model => model.description, new { @class = "form-control", rows = 4, required = "required" })
+                                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Location</th>
+                                <td>
+                                    @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Priority</th>
+                                <td>
+                                    @Html.DropDownListFor(model => model.PriorityId, ViewBag.PriorityId as SelectList, "-- Select Priority --", new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.PriorityId, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Repaired Status</th>
+                                <td>
+                                    @Html.DropDownListFor(model => model.Repaired_StausId, ViewBag.Repaired_StausId as SelectList, "-- Select Repaired Status --", new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.Repaired_StausId, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Image</th>
+                                <td>
+                                    <input type="file" name="ImageData" class="form-control-file" required="required" />
+                                    @Html.ValidationMessageFor(model => model.image_data, "", new { @class = "text-danger", required = "required" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Action_Date</th>
+                                <td>
+                                    @Html.EditorFor(model => model.action_date, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.action_date, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+
+    <!-- Include Bootstrap's JavaScript at the end of the page (before the closing </body> tag) if needed -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyqDz5SvLmbehY4p6o7aS7iC5f1l/2kCS" crossorigin="anonymous"></script> -->
+</body>
+</html>

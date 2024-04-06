@@ -1,0 +1,40 @@
+﻿@model IPagedList<LabMaintanance6.Models.tech2>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+@using PagedList;
+@using PagedList.Mvc;
+
+<h2>Action List</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Technician Name</th>
+                <th>Action Description</th>
+                <th>Action Date</th>
+                <th>Name of the Item</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.technicianName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.action_description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.action_date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Complain.Name_Of_the_Item)</td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.action_id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "tech2", new { i, search = Request.QueryString["search"] }))

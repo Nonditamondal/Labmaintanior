@@ -1,0 +1,143 @@
+﻿@model LabMaintanance6.Models.AllUser
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+            .form-signin .form-control {
+                position: relative;
+                height: auto;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+                .form-signin .form-control:focus {
+                    z-index: 2;
+                }
+
+            .form-signin input[type="text"] {
+                margin-bottom: 10px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+
+        .form-signin-heading {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-signin .checkbox {
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .form-signin .btn-primary {
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .btn-custom {
+            background-color: black;
+            color: white;
+        }
+
+            .btn-custom:hover {
+                background-color: #333;
+                color: white;
+            }
+        /* Existing styles */
+
+        .btn-back {
+            background-color: #007bff; /* Blue color */
+            color: white;
+        }
+
+            .btn-back:hover {
+                background-color: #0056b3; /* Darker shade of blue on hover */
+                color: white;
+            }
+
+        .btn-green {
+            background-color: #28a745; /* Green color */
+            color: white;
+        }
+
+            .btn-green:hover {
+                background-color: #1c7430; /* Darker shade of green on hover */
+                color: white;
+            }
+    </style>
+</head>
+<body>
+
+  
+
+        <div class="container">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-signin">
+                <h2 class="form-signin-heading">Login</h2>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.username, "User Name")
+                    @Html.TextBoxFor(model => model.username, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.password, "Password")
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </div>
+            }
+
+            <div class="text-center">
+                <p>Don't have an account? <a href="@Url.Action("Register", "Home")" class="btn btn-default">Register now</a>.</p>
+            </div>
+
+            <br />
+            <br />
+
+      
+            <div class="text-center">
+                <p>Forget password! Plz click here.</p>
+                @Html.ActionLink("Forget Password", "StoreEmailInSession", "DAllUsers", null, new { @class = "btn btn-custom btn-back" })
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                <p>Account Activation & Revarify Your Mail in Case of Error.</p>
+                @Html.ActionLink("Acount Activation & Email Reverification", "StoreEmailInSession", "RAllUsers", null, new { @class = "btn btn-custom btn-green" })
+            </div>
+        </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

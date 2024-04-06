@@ -1,0 +1,68 @@
+﻿@model LabMaintanance6.Models.AllUser
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+
+<div class="container">
+    <h2 class="mt-4 mb-3">New Password</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.password, "New Password", htmlAttributes: new { @class = "control-label" })
+                    @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "newPassword" })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.passwordConfirmation, "Confirm Password", htmlAttributes: new { @class = "control-label" })
+                    @Html.PasswordFor(model => model.passwordConfirmation, new { @class = "form-control", id = "confirmPassword" })
+                    <span id="passwordMatchError" class="text-danger" style="display: none;">Passwords do not match.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.hashPassword)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" id="submitButton" disabled />
+                    @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-secondary" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var newPasswordInput = document.getElementById('newPassword');
+        var confirmPasswordInput = document.getElementById('confirmPassword');
+        var passwordMatchError = document.getElementById('passwordMatchError');
+        var submitButton = document.getElementById('submitButton');
+
+        newPasswordInput.addEventListener('input', validatePasswords);
+        confirmPasswordInput.addEventListener('input', validatePasswords);
+
+        function validatePasswords() {
+            if (newPasswordInput.value !== confirmPasswordInput.value) {
+                passwordMatchError.style.display = 'block';
+                submitButton.disabled = true;
+            } else {
+                passwordMatchError.style.display = 'none';
+                submitButton.disabled = false;
+            }
+        }
+    });
+</script>

@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Verify Email";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Verify Email</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            padding-top: 200px;
+        }
+
+        .verification-form {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+        }
+
+            .verification-form h4 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .verification-form .form-group {
+                margin-bottom: 20px;
+            }
+
+            .verification-form label {
+                text-align: right;
+            }
+
+            .verification-form .btn-verify {
+                width: 100%;
+                padding: 10px 0;
+                font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="verification-form">
+                    <h4>Verify Email</h4>
+
+                    @using (Html.BeginForm("VerifyEmail", "RAllUsers", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.Label("OTP:", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("otp", null, new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessage("otp", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Verify" class="btn btn-primary btn-verify" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

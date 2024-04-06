@@ -1,0 +1,77 @@
+﻿@model LabMaintanance6.Models.Complain
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<style>
+    /* Additional custom CSS styles */
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-container h2 {
+            color: #337ab7;
+        }
+
+    /* Style the form inputs */
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 3px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            background-color: #4f5b62;
+            border-color: #4f5b62;
+        }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="form-container">
+                <h2>Update The Status</h2>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Repaired_StausId, "Repaired Status")
+                        @Html.DropDownListFor(model => model.Repaired_StausId, ViewBag.Repaired_StausId as SelectList, "-- Select Repaired Status --", new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.Repaired_StausId)
+                    </div>
+
+                    <div class="form-group text-center">
+                        <input type="submit" value="Save" class="btn btn-primary mr-2" />
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

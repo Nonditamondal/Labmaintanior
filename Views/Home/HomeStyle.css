@@ -1,0 +1,153 @@
+﻿
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+.form-signin input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signin-heading {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.form-signin .btn-primary {
+    border-radius: 4px;
+    width: 100%;
+}
+
+.btn-custom {
+    background-color: black;
+    color: white;
+}
+
+    .btn-custom:hover {
+        background-color: #333;
+        color: white;
+    }
+/* Existing styles */
+
+.btn-back {
+    background-color: #007bff; /* Blue color */
+    color: white;
+}
+
+    .btn-back:hover {
+        background-color: #0056b3; /* Darker shade of blue on hover */
+        color: white;
+    }
+
+.btn-green {
+    background-color: #28a745; /* Green color */
+    color: white;
+}
+
+    .btn-green:hover {
+        background-color: #1c7430; /* Darker shade of green on hover */
+        color: white;
+    }
+.registration-form {
+    background-color: #f7f7f7;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc; /* Added border style */
+}
+
+    login.registration-form h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+
+    .registration-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .registration-form .control-label {
+        text-align: right;
+        padding-right: 10px;
+        vertical-align: middle;
+    }
+
+    .registration-form .btn-register {
+        width: 100%;
+        padding: 10px 0;
+        font-weight: bold;
+    }
+
+    .registration-form .btn-back {
+        font-weight: bold;
+    }
+
+body {
+    background-color: #f0f0f0;
+    padding-top: 100px;
+}
+
+
+.btn-custom:hover {
+    background-color: #333; /* Darken the button on hover */
+    color: white;
+}
+body {
+    background-color: #f0f0f0;
+    padding-top: 200px;
+}
+
+.verification-form {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+}
+
+    .verification-form h4 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .verification-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .verification-form label {
+        text-align: right;
+    }
+
+    .verification-form .btn-verify {
+        width: 100%;
+        padding: 10px 0;
+        font-weight: bold;
+    }
